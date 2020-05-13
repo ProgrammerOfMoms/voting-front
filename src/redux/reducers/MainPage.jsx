@@ -12,7 +12,7 @@ export const setAuth = (value) => ({type: SET_AUTH, value: value})
 export const getUser = (id) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        fetch(`https://voting-school47.herokuapp.com/user/login/`, {
+        fetch(`https://voting-school47-back.herokuapp.com/user/login/`, {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json;charset=utf-8'
