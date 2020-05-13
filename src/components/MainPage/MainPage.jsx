@@ -3,7 +3,7 @@ import css from './MainPage.module.css';
 import { Link } from "react-router-dom";
 import "./MainPage.css";
 import { useDispatch } from 'react-redux';
-import { getUser } from '../../redux/reducers/MainPage';
+import { getUser, setAuth } from '../../redux/reducers/MainPage';
 
 
 const MainPage = (props) => {
@@ -12,7 +12,9 @@ const MainPage = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-          getUser()
+            if (props.id !== -1)
+                getUser(props.id)(dispatch)
+            else dispatch(setAuth(false));
         }
         fetchData();
       }, [dispatch])
