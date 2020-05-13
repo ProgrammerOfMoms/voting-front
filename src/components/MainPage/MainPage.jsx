@@ -15,9 +15,10 @@ const MainPage = (props) => {
     const dispatch = useDispatch(); 
     let query = useQuery();
     let id = query.get("id");
-    id = id? id: -1;
+    id = id? parseInt(id): -1;
 
     useEffect(() => {
+        debugger;
         const fetchData = async () => {
             if (id !== -1)
                 getUser(id)(dispatch)
@@ -27,7 +28,7 @@ const MainPage = (props) => {
       }, [dispatch])
 
     return (
-        props.isFetching?
+        !props.isFetching?
             <div className={css.container}>
                 <div className={css.img}></div>
                 <div className={css.btn}>

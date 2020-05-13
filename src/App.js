@@ -10,13 +10,14 @@ import { BrowserRouter as Router,
          useLocation } from 'react-router-dom';
 import ChoosingPageContainer from './components/ChoosingPage/ChoosingPageContainer';
 import ResultPageContainer from './components/ResultPage/ResultPageContainer';
+import MainPageContainer from './components/MainPage/MainPageContainer';
 
 const App = () => {
   return (
     <Router>
       <Switch>
         <Route path="/start">
-          <MainPage />
+          <MainPageContainer />
         </Route>
         <Route path="/candidates">
           <ChoosingPageContainer/>
