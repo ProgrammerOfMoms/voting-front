@@ -35,7 +35,7 @@ const ResultPage = (props) => {
     return (
       props.isAuth || localStorage.getItem("voted")?
         !props.isFetching && !props.isPrevFetching?
-          props.user.is_voted?
+          props.user.is_voted || localStorage.getItem("voted")?
             <div style={{animation: "fadeIn 1s"}} className={css.container}>
                 {props.candidates.map((value, index) => {
                     return <ProgressLine key={index}  
