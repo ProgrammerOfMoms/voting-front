@@ -38,8 +38,8 @@ const ChoosingPage = (props) => {
         changeVotedCandidate(id)(dispatch );
     }
 
-    const onVoteClick = (id) => {
-        sendVote(id)(dispatch);
+    const onVoteClick = (candidate_id, voter_id) => {
+        sendVote(candidate_id, voter_id)(dispatch);
     }
 
     useEffect(() => {
@@ -70,7 +70,7 @@ const ChoosingPage = (props) => {
                                             fullName={`${value.first_name} ${value.last_name}`} 
                                             id={value.id}/>
                                 })}
-                                <div onClick={() => onVoteClick(props.voted_candidate)} className={css.btn}>проголосовать</div>
+                                <div onClick={() => onVoteClick(props.voted_candidate, id)} className={css.btn}>проголосовать</div>
                             </>
                         :
                             <div>Loading...</div>
