@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
         voted_candidate: state.ChoosingPageReducer.voted_candidate,
         user: state.MainPageReducer.user,
         isFetching: state.ChoosingPageReducer.isFetching,
+        isAuth: state.MainPageReducer.isAuth
     }
 }
 

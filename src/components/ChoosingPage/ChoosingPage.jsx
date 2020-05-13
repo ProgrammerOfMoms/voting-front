@@ -6,11 +6,18 @@ import PreText from '../PreText/PreText';
 import { getCandidates, changeVotedCandidate, sendVote, getStatus } from '../../redux/reducers/ChoosingPage';
 import { Redirect } from 'react-router-dom';
 import { getUser } from '../../redux/reducers/MainPage';
+import { useLocation } from 'react-router-dom';
+
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
 
 const ChoosingPage = (props) => { 
     const dispatch = useDispatch();
     const [isShowed, setShowed] = useState(false);
     const [isAllow, setAllow] = useState(true);
+    let query = useQuery();
+    const id = query.get("id");
     
     const onVKClick = (e) => {
         e.preventDefault();
@@ -36,7 +43,7 @@ const ChoosingPage = (props) => {
     }
 
     useEffect(() => {
-      if (props.user === {}) setAllow(false);  
+      console.log(props) 
       const fetchData = async () => {
         let showed = localStorage.getItem("showed");
         if(showed!==null) setShowed(showed);
@@ -44,14 +51,14 @@ const ChoosingPage = (props) => {
             localStorage.setItem("showed", true);
             setShowed(true);
         }
-        getUser(props.user.id)(dispatch);
+        getUser(id)(dispatch);
         getCandidates(props.candidates)(dispatch);
       }
       fetchData();
-    }, [dispatch, props.user])
+    }, [dispatch, props.user, props.candidates])
 
     return (
-        !isAllow?
+        !isAuth?
             <Redirect to="/start"/>
         :
             props.user.isVoted?

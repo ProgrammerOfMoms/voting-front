@@ -37,7 +37,7 @@ const MainPage = (props) => {
                     <span></span>
                     <span></span>
                     {props.isAuth?
-                        <Link className={css.main_link} to="/candidates">проголосовать</Link>
+                        <Link className={css.main_link} to={`/candidates?id=${id}`}>проголосовать</Link>
                     :
                         <a href={url} className={css.main_link}>авторизироваться</a>
                     }
