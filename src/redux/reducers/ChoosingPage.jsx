@@ -1,5 +1,6 @@
 import Cookie from 'js-cookie';
 import { setTotalVote } from './ResultPage';
+import { getUser } from './MainPage';
 
 const IS_FETCHING = "IS_FETCHING";
 const SET_CANDIDATES = "SET_CANDIDATES";
@@ -35,38 +36,24 @@ export const getStatus = () => {
 export const sendVote = (candidate_id, voter_id) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        if (!localStorage.getItem("voted")){
-            fetch(`https://voting-school47-back.herokuapp.com/api/candidates/`, {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-                'X-CSRFToken': Cookie.get('csrftoken')
-                },
-                body: JSON.stringify({"candidate_id": candidate_id,
-                                      "voter_id": voter_id})
-            })
-            .then(response => response.json())
-            .then((commits) => {
-                
-                dispatch(toggleIsFetching(false));
-            })
-            .catch(err => {console.log(err)});
-        } else {
-            dispatch(setVoted(true));
-            fetch(`/api/remember_id/`, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-                'X-CSRFToken': Cookie.get('csrftoken')
-                },
-            })
-            .then(response => response.json())
-            .then((commits) => {
-                dispatch(toggleIsFetching(false));
-            })
-            .catch(err => {console.log(err)});
-            alert("меня не проведешь!")
-        }
+        fetch(`https://voting-school47-back.herokuapp.com/api/candidates/`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'X-CSRFToken': Cookie.get('csrftoken')
+            },
+            body: JSON.stringify({"candidate_id": candidate_id,
+                                    "voter_id": voter_id})
+        })
+        .then(response => response.json())
+        .then((commits) => {
+            if (!commits.error) {
+                getUser(voter_id)(dispatch);
+                dispatch(setCandidates(commits));
+            } 
+            dispatch(toggleIsFetching(false));
+        })
+        .catch(err => {console.log(err)});
     }
 }
 
