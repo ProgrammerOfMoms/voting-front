@@ -22,7 +22,7 @@ export const setTotal = (candidates) => {
 export const getStatus = () => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        fetch(`/api/get_status/`, {
+        fetch(`https://voting-school47-back.herokuapp.com/api/get_status/`, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -44,7 +44,7 @@ export const getCandidates = (candidates) => {
     return (dispatch) => {
         if (candidates.length === 0){
             dispatch(toggleIsFetching(true));
-            fetch(`/api/candidates/`, {
+            fetch(`https://voting-school47-back.herokuapp.com/api/candidates/`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json;charset=utf-8'
