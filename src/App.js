@@ -17,7 +17,7 @@ function useQuery() {
 
 const App = () => {
   let query = useQuery()
-  id = query.get("id")
+  let id = query.get("id")
   id = id? id: -1
   return (
     <Router>

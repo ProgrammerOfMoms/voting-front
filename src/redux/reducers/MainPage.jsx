@@ -44,7 +44,7 @@ const MainPageReducer = (state=initialState, action) =>{
             newState.isAuth = action.value;
             return newState;
         case SET_USER:
-            if (commits.error)
+            if (action.value.error)
                 newState.user = {};
             else 
                 newState.user = action.value;
