@@ -79,7 +79,7 @@ const ChoosingPage = (props) => {
                     </div>
                 :
                     <PreText text={text} 
-                            link="/candidates"
+                            link={`/candidates?id=${id}`}
                             btn="понятно!"
                             btnEvent={onShowed}/>
         );
