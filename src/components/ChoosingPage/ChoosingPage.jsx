@@ -57,7 +57,7 @@ const ChoosingPage = (props) => {
         !props.isAuth?
             <Redirect to="/start"/>
         :
-            props.user.isVoted?
+            props.user.is_voted?
                 <Redirect to="/results"/>
             :    
                 isShowed?
