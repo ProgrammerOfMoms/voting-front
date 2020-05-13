@@ -14,7 +14,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/start">
+        <Route path="/start:id">
           <MainPage auth={false}/>
         </Route>
         <Route path="/candidates">
