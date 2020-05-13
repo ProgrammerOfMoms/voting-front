@@ -18,7 +18,6 @@ const MainPage = (props) => {
     id = id? parseInt(id): -1;
 
     useEffect(() => {
-        debugger;
         const fetchData = async () => {
             if (id !== -1)
                 getUser(id)(dispatch)

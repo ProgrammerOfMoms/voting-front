@@ -48,6 +48,7 @@ export const sendVote = (candidate_id, voter_id) => {
         .then(response => response.json())
         .then((commits) => {
             if (!commits.error) {
+                localStorage.setItem("voted", true);
                 getUser(voter_id)(dispatch);
                 dispatch(setCandidates(commits));
             } 

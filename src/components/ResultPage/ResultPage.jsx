@@ -33,7 +33,7 @@ const ResultPage = (props) => {
     }, [props.total, total]);
 
     return (
-      props.isAuth?
+      props.isAuth || localStorage.getItem("voted")?
         !props.isFetching && !props.isPrevFetching?
           props.user.is_voted?
             <div style={{animation: "fadeIn 1s"}} className={css.container}>
