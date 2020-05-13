@@ -16,7 +16,7 @@ const ChoosingPage = (props) => {
     const dispatch = useDispatch();
     const [isShowed, setShowed] = useState(false);
     let query = useQuery();
-    const id = query.get("id");
+    let id = query.get("id");
     id = id? id: -1;
     
     const onVKClick = (e) => {
