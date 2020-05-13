@@ -50,7 +50,7 @@ const ResultPage = (props) => {
         :
           <div>loading...</div>
       :
-        <Redirect to="/start"/>
+        <Redirect to="/start?redirect=true"/>
     );
 }
 

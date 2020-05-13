@@ -16,12 +16,14 @@ const MainPage = (props) => {
     let query = useQuery();
     let id = query.get("id");
     id = id? parseInt(id): -1;
+    let redirect = query.get("redirect")
 
     useEffect(() => {
         const fetchData = async () => {
             if (id !== -1)
                 getUser(id)(dispatch)
             else dispatch(setAuth(false));
+            if(redirect) dispatch(setAuth(false));
         }
         fetchData();
       }, [dispatch])
