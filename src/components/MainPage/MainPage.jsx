@@ -8,6 +8,7 @@ const MainPage = (props) => {
     const url = "https://oauth.vk.com/authorize?client_id=7462552&redirect_uri=https://voting-school47-back.herokuapp.com/user/login&scope=12&display=page"
 
     console.log(props)
+    console.log("11")
 
     return (
         <div className={css.container}>
