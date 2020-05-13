@@ -51,7 +51,7 @@ const ChoosingPage = (props) => {
         getCandidates(props.candidates)(dispatch);
       }
       fetchData();
-    }, [dispatch, props.user, props.candidates])
+    }, [dispatch, props.candidates])
 
     return (
         !props.isAuth?
