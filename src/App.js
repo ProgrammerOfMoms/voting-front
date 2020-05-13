@@ -6,15 +6,18 @@ import MainPage from './components/MainPage/MainPage';
 import { BrowserRouter as Router,
          Switch,
          Route,
-         Redirect } from 'react-router-dom';
+         Redirect,
+         useLocation } from 'react-router-dom';
 import ChoosingPageContainer from './components/ChoosingPage/ChoosingPageContainer';
 import ResultPageContainer from './components/ResultPage/ResultPageContainer';
+
+
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/start:id">
+        <Route path="/start">
           <MainPage auth={false}/>
         </Route>
         <Route path="/candidates">
