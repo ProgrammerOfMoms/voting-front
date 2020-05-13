@@ -58,7 +58,7 @@ const ChoosingPage = (props) => {
     }, [dispatch, props.user, props.candidates])
 
     return (
-        !isAuth?
+        !props.isAuth?
             <Redirect to="/start"/>
         :
             props.user.isVoted?
