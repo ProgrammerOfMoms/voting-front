@@ -5,11 +5,12 @@ import VoteLine from './VoteLine/VoteLine';
 import PreText from '../PreText/PreText';
 import { getCandidates, changeVotedCandidate, sendVote, getStatus } from '../../redux/reducers/ChoosingPage';
 import { Redirect } from 'react-router-dom';
+import { getUser } from '../../redux/reducers/MainPage';
 
 const ChoosingPage = (props) => { 
     const dispatch = useDispatch();
     const [isShowed, setShowed] = useState(false);
-    const [isVoted, setVoted] = useState(false);
+    const [isAllow, setAllow] = useState(true);
     
     const onVKClick = (e) => {
         e.preventDefault();
@@ -35,43 +36,49 @@ const ChoosingPage = (props) => {
     }
 
     useEffect(() => {
+      if (props.user === {}) setAllow(false);  
       const fetchData = async () => {
         let showed = localStorage.getItem("showed");
         if(showed!==null) setShowed(showed);
-        let voted = localStorage.getItem("voted");
-        if(voted!==null) setVoted(true);
-        getStatus()(dispatch);
+        else {
+            localStorage.setItem("showed", true);
+            setShowed(true);
+        }
+        getUser(props.user.id)(dispatch);
         getCandidates(props.candidates)(dispatch);
       }
       fetchData();
-    }, [dispatch, props.candidates, isVoted])
+    }, [dispatch, props.user])
 
     return (
-        props.isVoted?
-            <Redirect to="/results"/>
-        :    
-            isShowed?
-                <div style={{animation: "fadeIn 1s"}} className={css.container}>
-                    {!props.isFetching?
-                        <>
-                            {props.candidates.map((value, index) => {
-                                return <VoteLine key={index} 
-                                        onClick={onChangeCandidate} 
-                                        fullName={`${value.first_name} ${value.last_name}`} 
-                                        id={value.id}/>
-                            })}
-                            <div onClick={() => onVoteClick(props.voted_candidate)} className={css.btn}>проголосовать</div>
-                        </>
-                    :
-                        <div>Loading...</div>
-                    }
-                </div>
-            :
-                <PreText text={text} 
-                        link="/candidates"
-                        btn="понятно!"
-                        btnEvent={onShowed}/>
-    );
+        !isAllow?
+            <Redirect to="/start"/>
+        :
+            props.user.isVoted?
+                <Redirect to="/results"/>
+            :    
+                isShowed?
+                    <div style={{animation: "fadeIn 1s"}} className={css.container}>
+                        {!props.isFetching?
+                            <>
+                                {props.candidates.map((value, index) => {
+                                    return <VoteLine key={index} 
+                                            onClick={onChangeCandidate} 
+                                            fullName={`${value.first_name} ${value.last_name}`} 
+                                            id={value.id}/>
+                                })}
+                                <div onClick={() => onVoteClick(props.voted_candidate)} className={css.btn}>проголосовать</div>
+                            </>
+                        :
+                            <div>Loading...</div>
+                        }
+                    </div>
+                :
+                    <PreText text={text} 
+                            link="/candidates"
+                            btn="понятно!"
+                            btnEvent={onShowed}/>
+        );
 }
 
 export default ChoosingPage;

@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
     return {
         candidates: state.ChoosingPageReducer.candidates,
         voted_candidate: state.ChoosingPageReducer.voted_candidate,
-        isVoted: state.ChoosingPageReducer.isVoted,
+        user: state.MainPageReducer.user,
         isFetching: state.ChoosingPageReducer.isFetching,
     }
 }
