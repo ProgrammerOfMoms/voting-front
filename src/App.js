@@ -11,14 +11,19 @@ import { BrowserRouter as Router,
 import ChoosingPageContainer from './components/ChoosingPage/ChoosingPageContainer';
 import ResultPageContainer from './components/ResultPage/ResultPageContainer';
 
-
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const App = () => {
+  let query = useQuery()
+  id = query.get("id")
+  id = id? id: -1
   return (
     <Router>
       <Switch>
         <Route path="/start">
-          <MainPage auth={false}/>
+          <MainPage id = {id}/>
         </Route>
         <Route path="/candidates">
           <ChoosingPageContainer/>

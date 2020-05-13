@@ -1,40 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import css from './MainPage.module.css';
 import { Link } from "react-router-dom";
 import "./MainPage.css";
-import {
-    useLocation
-  } from "react-router-dom";
-
-
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-  }
+import { useDispatch } from 'react-redux';
+import { getUser } from '../../redux/reducers/MainPage';
 
 
 const MainPage = (props) => {
-
-    let query = useQuery()
     const url = "https://oauth.vk.com/authorize?client_id=7462552&redirect_uri=https://voting-school47-back.herokuapp.com/user/login&scope=12&display=page"
+    const dispatch = useDispatch(); 
 
-    let auth = props.auth
-    console.log(query.get("id"))
+    useEffect(() => {
+        const fetchData = async () => {
+          getUser()
+        }
+        fetchData();
+      }, [dispatch])
 
     return (
-        <div className={css.container}>
-            <div className={css.img}></div>
-            <div className={css.btn}>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                {auth?
-                    <Link className={css.main_link} to="/candidates">проголосовать</Link>
-                :
-                    <a href={url} className={css.main_link}>авторизироваться</a>
-                }
-                </div>
-        </div>
+        props.isFetching?
+            <div className={css.container}>
+                <div className={css.img}></div>
+                <div className={css.btn}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    {props.isAuth?
+                        <Link className={css.main_link} to="/candidates">проголосовать</Link>
+                    :
+                        <a href={url} className={css.main_link}>авторизироваться</a>
+                    }
+                    </div>
+            </div>
+        :
+            <div className={css.container}>loading...</div>
     );
 }
 
