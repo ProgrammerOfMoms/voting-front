@@ -15,9 +15,9 @@ function useQuery() {
 const ChoosingPage = (props) => { 
     const dispatch = useDispatch();
     const [isShowed, setShowed] = useState(false);
-    const [isAllow, setAllow] = useState(true);
     let query = useQuery();
     const id = query.get("id");
+    id = id? id: -1;
     
     const onVKClick = (e) => {
         e.preventDefault();
@@ -58,7 +58,7 @@ const ChoosingPage = (props) => {
             <Redirect to="/start"/>
         :
             props.user.is_voted?
-                <Redirect to="/results"/>
+                <Redirect to={`/results?id=${id}`}/>
             :    
                 isShowed?
                     <div style={{animation: "fadeIn 1s"}} className={css.container}>

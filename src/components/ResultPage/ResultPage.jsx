@@ -4,16 +4,24 @@ import ProgressLine from './ProgressLine/ProgressLine';
 import { useDispatch } from 'react-redux';
 import { getCandidates, getStatus, setTotal } from '../../redux/reducers/ResultPage';
 import { Redirect } from 'react-router-dom';
+import { getUser } from '../../redux/reducers/MainPage';
+import { useLocation } from 'react-router-dom';
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
 
 const ResultPage = (props) => {
     const dispatch = useDispatch();
-    const [total, setTotal_] = useState(-1)
+    const [total, setTotal_] = useState(-1);
+    let query = useQuery();
+    let id = query.get("id");
+    id = id? id: -1;
 
 
     useEffect(() => {
         const fetchData = async () => {
-          if (!localStorage.getItem("voted")) getStatus()(dispatch);
+          getUser(id)(dispatch)
           getCandidates(props.candidates)(dispatch);
           setTotal(props.candidates)(dispatch);
         }
@@ -25,8 +33,9 @@ const ResultPage = (props) => {
     }, [props.total, total]);
 
     return (
+      props.isAuth?
         !props.isFetching && !props.isPrevFetching?
-          props.isVoted || localStorage.getItem("voted")?
+          props.user.is_voted?
             <div style={{animation: "fadeIn 1s"}} className={css.container}>
                 {props.candidates.map((value, index) => {
                     return <ProgressLine key={index}  
@@ -37,10 +46,11 @@ const ResultPage = (props) => {
                 }
             </div>
           :
-            <Redirect to="/candidates"/>
+            <Redirect to={`/candidates?id=${id}`}/>
         :
           <div>loading...</div>
-        
+      :
+        <Redirect to="/start"/>
     );
 }
 

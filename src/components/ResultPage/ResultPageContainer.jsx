@@ -10,10 +10,11 @@ const ResultPageContainer = (props) =>{
 const mapStateToProps = (state) => {
     return {
         candidates: state.ResultPageReducer.candidates,
-        isVoted: state.ChoosingPageReducer.isVoted,
         isFetching: state.ResultPageReducer.isFetching,
         total: state.ResultPageReducer.total,
-        isPrevFetching: state.ChoosingPageReducer.isFetching
+        isPrevFetching: state.ChoosingPageReducer.isFetching,
+        user: state.MainPageReducer.user,
+        isAuth: state.MainPageReducer.isAuth
     }
 }
 
