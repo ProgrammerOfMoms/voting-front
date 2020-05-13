@@ -21,7 +21,8 @@ const ResultPage = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-          getUser(id)(dispatch)
+          getUser(id)(dispatch);
+          if (props.user.is_voted) localStorage.setItem("voted", true);
           getCandidates(props.candidates)(dispatch);
           setTotal(props.candidates)(dispatch);
         }
