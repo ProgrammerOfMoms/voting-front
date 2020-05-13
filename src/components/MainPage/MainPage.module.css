@@ -135,7 +135,11 @@ a:link{
     animation-iteration-count: infinite;
     animation-delay: 0.75s;
 }
-
+.disabled {
+    pointer-events: none; /* делаем элемент неактивным для взаимодействия */
+    cursor: default; /*  курсор в виде стрелки */
+    color: #888;/* цвет текста серый */
+}
 @keyframes top_animation{
     from{
         left: -100%

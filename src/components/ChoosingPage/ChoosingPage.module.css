@@ -57,6 +57,12 @@
   transition: all 0.5s ease;
 }
 
+.disabled {
+  pointer-events: none; /* делаем элемент неактивным для взаимодействия */
+  cursor: default; /*  курсор в виде стрелки */
+  color: #888;/* цвет текста серый */
+}
+
 @keyframes move-light{
     from {
       transform: translate(-4em) skewX(-45deg);

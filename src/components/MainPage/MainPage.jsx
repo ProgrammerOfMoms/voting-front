@@ -37,9 +37,12 @@ const MainPage = (props) => {
                     <span></span>
                     <span></span>
                     {props.isAuth?
-                        <Link className={css.main_link} to={`/candidates?id=${id}`}>проголосовать</Link>
+                        <Link className={props.isFetching? `${css.disabled} ${css.main_link}`: css.main_link}
+                        to={`/candidates?id=${id}`}>проголосовать</Link>
                     :
-                        <a href={url} className={css.main_link}>авторизироваться</a>
+                        <a href={url} className={props.isFetching? `${css.disabled} ${css.main_link}`: css.main_link}>
+                            авторизироваться
+                        </a>
                     }
                     </div>
             </div>

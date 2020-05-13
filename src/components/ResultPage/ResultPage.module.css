@@ -11,6 +11,11 @@
     /* grid-template-columns: 230px 200px; */
 }
 
+.disabled {
+    pointer-events: none; /* делаем элемент неактивным для взаимодействия */
+    cursor: default; /*  курсор в виде стрелки */
+    color: #888;/* цвет текста серый */
+}
 
 @media all and (max-width: 768px) {
     .container{

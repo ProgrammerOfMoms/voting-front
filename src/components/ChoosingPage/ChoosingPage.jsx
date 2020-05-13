@@ -70,7 +70,8 @@ const ChoosingPage = (props) => {
                                             fullName={`${value.first_name} ${value.last_name}`} 
                                             id={value.id}/>
                                 })}
-                                <div onClick={() => onVoteClick(props.voted_candidate, id)} className={css.btn}>проголосовать</div>
+                                <div onClick={() => onVoteClick(props.voted_candidate, id)}
+                                    className={props.isFetching? `${css.disabled} ${css.btn}`: css.btn}>проголосовать</div>
                             </>
                         :
                             <div>Loading...</div>
