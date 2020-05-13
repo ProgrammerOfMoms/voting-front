@@ -1,0 +1,216 @@
+.container{
+    font-family: Akrobat;
+    grid-area: con;
+    display: grid;
+    height: 40vh;
+    width: 70vw;
+    grid-template-areas: "text0 "
+                         "btn_con";
+    grid-template-rows: 80% 20%;
+    gap: 10px;
+}
+
+.main_link{
+    text-decoration: none;
+    background-color:rgb(3, 63, 143);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.main_link:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: #004AAD;
+    background-clip: inherit;
+    -webkit-background-clip: inherit;
+    -webkit-text-fill-color: #fff;
+    transition: 0.2s;
+}
+.btn_con{
+    /* margin-top: 40px; */
+    justify-self: center;
+    grid-area: btn_con;
+    display: grid;
+    grid-template-areas: "first second";
+}
+.first{
+    grid-area: first;
+}
+.second{
+    grid-area: second;
+}
+.text{
+    grid-area: text0;
+    display: grid;
+    align-content: center;
+    justify-self: center;
+    height: 100%;
+    width: 100%;
+    color: rgb(3, 63, 143);
+    font-family: Akrobat;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    border: 5px solid black;
+}
+.btn{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn{
+    display: grid;
+    grid-template-rows: repeat(7, 0px) 100%;
+    align-self: center;
+    font-size: 30px;
+    background-color:rgb(3, 63, 143);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    padding: 3px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.2s;
+    min-height: 30px;
+    line-height: 30px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #004AAD;
+    -webkit-background-clip: inherit;
+    -webkit-text-fill-color: #fff;
+    transition: 0.2s;
+}
+.a:hover{
+    color: white;
+}
+
+.btn span{
+    position: absolute;
+    display: block;
+}
+.btn span:nth-child(1){
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg,  transparent,  #004AAD 100%);
+    animation: top_animation 4s;
+    animation-iteration-count: infinite;
+}
+
+.btn span:nth-child(3){
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(270deg,  transparent,  #004AAD 100%);
+    animation: bot_animation 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.5s;
+}
+
+.btn span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg,  transparent,  #004AAD 100%);
+    animation: right_animation 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.25s;
+}
+
+.btn span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(360deg,  transparent,  #004AAD 100%);
+    animation: left_animation 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes top_animation{
+    from{
+        left: -100%
+    }
+    20%{
+        left: 100%
+    }
+    100%{
+        left: 101%
+    }
+}
+@keyframes bot_animation{
+    from{
+        right: -100%;
+    }
+    20%{
+        right: 100%;
+    }
+    100%{
+        right: 101%;
+    }
+}
+@keyframes left_animation{
+    from{
+        bottom: -100%;
+    }
+    20%{
+        bottom: 100%;
+    }
+    100%{
+        bottom: 101%;
+    }
+
+}
+@keyframes right_animation{
+    from{
+        top: -100%;
+    }
+    20%{
+        top: 100%;
+    }
+    100%{
+        top: 101%;
+    }
+}
+
+/* @media all and (min-width: 768px) and (max-width: 1000px) {
+    .container{
+        grid-template-areas: "img"
+                             "btn";
+        grid-template-columns: 100%;
+        grid-template-rows: 90% 10%;
+    }
+    .img{
+        min-width: 0px;
+        min-height: 0px;
+    }
+
+} */
+@media all and (max-width: 768px) {
+    .container{
+        width: 100vw;
+        height: 100vh;
+        grid-template-rows: min-content;
+        grid-auto-rows: min-content;
+        align-items: center;
+        align-content: center;
+    }
+    .text{
+        font-size: 2.7em;
+        border: none;
+        border-bottom: 4px solid black;
+        border-top: 4px solid black;
+    }
+    .btn_con{
+        /* margin-bottom: 250px; */
+    }
+}
+

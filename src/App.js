@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+// import ChoosingPage from './components/ChoosingPage/ChoosingPage';
+import MainPage from './components/MainPage/MainPage';
+import { BrowserRouter as Router,
+         Switch,
+         Route,
+         Redirect } from 'react-router-dom';
+import ChoosingPageContainer from './components/ChoosingPage/ChoosingPageContainer';
+import ResultPageContainer from './components/ResultPage/ResultPageContainer';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/start">
+          <MainPage auth={false}/>
+        </Route>
+        <Route path="/candidates">
+          <ChoosingPageContainer/>
+        </Route>
+        <Route path="/results">
+          <ResultPageContainer/>
+        </Route>
+        <Route path="/">
+          <Redirect to="/start"/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

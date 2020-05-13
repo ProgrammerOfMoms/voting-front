@@ -1,0 +1,191 @@
+.container{
+    font-family: Akrobat;
+    grid-area: con;
+    display: grid;
+    height: 100%;
+    grid-template-areas: "img"
+                         "btn";
+    height: 80vh;
+    width: 80vw;
+    grid-template-rows: 90% 10%;
+    /* grid-template-columns: 25% 50% 25%; */
+    /* min-width: 500px; */
+}
+
+
+.main_link{
+    text-decoration: none;
+    background-color:rgb(3, 63, 143);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.main_link:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: #004AAD;
+    background-clip: inherit;
+    -webkit-background-clip: inherit;
+    -webkit-text-fill-color: #fff;
+    transition: 0.2s;
+}
+a:visited{
+    text-decoration: none;
+}
+a:active{
+    text-decoration: none;
+}
+a:focus{
+    text-decoration: none;
+}
+a:link{
+    text-decoration: none;
+}
+.img{
+    grid-area: img;
+    background-image: url("../../assets/img/main-back.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+.btn{
+    font-weight: bold;
+    text-transform: uppercase;
+    justify-self: center;
+}
+
+.btn{
+    /* margin-right: 5%; */
+    grid-area: btn;
+    display: grid;
+    grid-template-rows: repeat(7, 0px) 100%;
+    /* justify-self: end; */
+    align-self: center;
+    /* align-items: center; */
+    font-size: 30px;
+    /* background: linear-gradient(90deg, #00845B 0%, #00A55F 50%,  #00AC58 100%); */
+    background-color:rgb(3, 63, 143);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    padding: 3px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.2s;
+    min-height: 30px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.btn:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #004AAD;
+    background-clip: inherit;
+    -webkit-background-clip: inherit;
+    -webkit-text-fill-color: #fff;
+    transition: 0.2s;
+}
+
+.btn span{
+    position: absolute;
+    display: block;
+}
+.btn span:nth-child(1){
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg,  transparent,  #004AAD 100%);
+    animation: top_animation 4s;
+    animation-iteration-count: infinite;
+}
+
+.btn span:nth-child(3){
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(270deg,  transparent,  #004AAD 100%);
+    animation: bot_animation 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.5s;
+}
+
+.btn span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg,  transparent,  #004AAD 100%);
+    animation: right_animation 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.25s;
+}
+
+.btn span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(360deg,  transparent,  #004AAD 100%);
+    animation: left_animation 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes top_animation{
+    from{
+        left: -100%
+    }
+    20%{
+        left: 100%
+    }
+    100%{
+        left: 101%
+    }
+}
+@keyframes bot_animation{
+    from{
+        right: -100%;
+    }
+    20%{
+        right: 100%;
+    }
+    100%{
+        right: 101%;
+    }
+}
+@keyframes left_animation{
+    from{
+        bottom: -100%;
+    }
+    20%{
+        bottom: 100%;
+    }
+    100%{
+        bottom: 101%;
+    }
+
+}
+@keyframes right_animation{
+    from{
+        top: -100%;
+    }
+    20%{
+        top: 100%;
+    }
+    100%{
+        top: 101%;
+    }
+}
+@media all and (max-width: 768px) {
+    .container{
+        width: 100vw;;
+    }
+    .btn{
+        margin-bottom: 100px;
+    }
+}
