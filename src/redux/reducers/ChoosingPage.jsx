@@ -32,7 +32,7 @@ export const getStatus = () => {
     }
 }
 
-export const sendVote = (id) => {
+export const sendVote = (candidate_id, voter_id) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
         if (!localStorage.getItem("voted")){
@@ -42,15 +42,12 @@ export const sendVote = (id) => {
                 'Content-Type': 'application/json;charset=utf-8',
                 'X-CSRFToken': Cookie.get('csrftoken')
                 },
-                body: JSON.stringify({"id": id})
+                body: JSON.stringify({"candidate_id": candidate_id,
+                                      "voter_id": voter_id})
             })
             .then(response => response.json())
             .then((commits) => {
-                if (commits.status === "already_voted" || commits.status === "voted"){
-                    localStorage.setItem("voted", true);
-                    dispatch(setVoted(true))
-                    dispatch(setCandidates(commits.candidates));
-                }
+                
                 dispatch(toggleIsFetching(false));
             })
             .catch(err => {console.log(err)});
