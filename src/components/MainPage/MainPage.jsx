@@ -4,16 +4,23 @@ import { Link } from "react-router-dom";
 import "./MainPage.css";
 import { useDispatch } from 'react-redux';
 import { getUser, setAuth } from '../../redux/reducers/MainPage';
+import { useLocation } from 'react-router-dom';
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
 
 const MainPage = (props) => {
     const url = "https://oauth.vk.com/authorize?client_id=7462552&redirect_uri=https://voting-school47-back.herokuapp.com/user/login&scope=12&display=page"
     const dispatch = useDispatch(); 
+    let query = useQuery();
+    let id = query.get("id");
+    id = id? id: -1;
 
     useEffect(() => {
         const fetchData = async () => {
-            if (props.id !== -1)
-                getUser(props.id)(dispatch)
+            if (id !== -1)
+                getUser(id)(dispatch)
             else dispatch(setAuth(false));
         }
         fetchData();
