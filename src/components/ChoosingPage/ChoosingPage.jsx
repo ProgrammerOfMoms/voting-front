@@ -47,7 +47,7 @@ const ChoosingPage = (props) => {
       const fetchData = async () => {
         let showed = localStorage.getItem("showed");
         if(showed!==null) setShowed(showed);
-        // getUser(id)(dispatch);
+        getUser(id)(dispatch);
         getCandidates(props.candidates)(dispatch);
       }
       fetchData();
