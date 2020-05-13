@@ -36,7 +36,7 @@ export const sendVote = (id) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
         if (!localStorage.getItem("voted")){
-            fetch(`/api/candidates/`, {
+            fetch(`https://voting-school47-back.herokuapp.com/api/candidates/`, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json;charset=utf-8',
@@ -83,7 +83,7 @@ export const getCandidates = (candidates) => {
     return (dispatch) => {
         if (candidates.length === 0){
             dispatch(toggleIsFetching(true));
-            fetch(`https://voting-school47.herokuapp.com/api/candidates/`, {
+            fetch(`https://voting-school47-back.herokuapp.com/api/candidates/`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json;charset=utf-8'
