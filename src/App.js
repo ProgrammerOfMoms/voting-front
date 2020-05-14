@@ -16,6 +16,9 @@ const App = () => {
   return (
     <Router>
       <Switch>
+      <Route path="/">
+          <div>Голосование окончено</div>
+        </Route>
         <Route path="/start">
           <MainPageContainer />
         </Route>
@@ -25,9 +28,9 @@ const App = () => {
         <Route path="/results">
           <ResultPageContainer/>
         </Route>
-        <Route path="/">
+        {/* <Route path="/">
           <Redirect to="/start"/>
-        </Route>
+        </Route> */}
       </Switch>
     </Router>
   );
