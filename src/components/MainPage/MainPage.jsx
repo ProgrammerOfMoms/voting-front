@@ -32,8 +32,8 @@ const MainPage = (props) => {
     return (
         !props.isFetching?
             access?
-                <div className={css.container}>
-                    У вас нет прав для голосования.
+                <div className={css.denied_container}>
+                    <div className={css.denied}>У вас нет прав для голосования.</div>
                 </div>
             :    
                 <div className={css.container}>
